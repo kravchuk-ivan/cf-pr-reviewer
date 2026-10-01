@@ -2,7 +2,7 @@
 
 An automated GitHub pull-request reviewer that runs entirely on Cloudflare's free tier: Workers, SQLite Durable Objects, and Workers AI. Every PR passes through deterministic security checks, a [Clef](https://developers.cloudflare.com/workers-ai/models/clef-flash/) triage gate, and a multi-model review committee. The result is posted back to GitHub as a review with inline, one-click **Commit suggestion** fixes.
 
-Forked from [Clawbuilders/cloudflare-code-reviewer](https://github.com/Clawbuilders/cloudflare-code-reviewer), built for [ClawBuilders](https://clawbuilder.club) S1:E5 — [Deploy AI Agents with Cloudflare](https://clawbuilder.club/events/s1/ep5/deploy-ai-agents-with-cloudflare).
+Based on [Clawbuilders/cloudflare-code-reviewer](https://github.com/Clawbuilders/cloudflare-code-reviewer), built for [ClawBuilders](https://clawbuilder.club) S1:E5 — [Deploy AI Agents with Cloudflare](https://clawbuilder.club/events/s1/ep5/deploy-ai-agents-with-cloudflare).
 
 **See it working** on [kravchuk-ivan/cf-review-demo](https://github.com/kravchuk-ivan/cf-review-demo/pulls):
 
@@ -14,7 +14,7 @@ Forked from [Clawbuilders/cloudflare-code-reviewer](https://github.com/Clawbuild
 
 ---
 
-## What's different from upstream
+## What's different from the original
 
 - **Clef triage instead of Jev.** The triage gate calls `@cf/cloudflare/clef-flash`, Cloudflare's first-party decision model. Upstream used `typesafe/jev`, which is billed through AI Gateway credits and fails on a free account with `2021: Insufficient AI Gateway credits`.
 - **Inline one-click suggestions.** Code-quality findings are posted through the Pull Request Reviews API, anchored to the exact diff lines, so GitHub renders a **Commit suggestion** button. Suggestion ranges are re-aligned against the real file before posting, so committing one never duplicates or breaks code. Suggestions that only repeat existing code are dropped.
@@ -91,8 +91,8 @@ Requires Node 20+, a Cloudflare account (the free plan works), and a GitHub acco
 ### 1. Install and deploy
 
 ```bash
-git clone https://github.com/kravchuk-ivan/cloudflare-code-reviewer.git
-cd cloudflare-code-reviewer
+git clone https://github.com/kravchuk-ivan/cf-pr-reviewer.git
+cd cf-pr-reviewer
 npm install
 npx wrangler login
 npm run deploy
